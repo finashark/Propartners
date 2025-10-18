@@ -20,7 +20,10 @@ CONTENT = {
             "cta_secondary": "View Services",
             "disclaimer": "*ProPartners operates independently and does not exclusively represent any specific brand.",
             "network_title": "Network Overview",
-            "network_stats": "10+ countries · 300+ partners",
+            "network_stats": {
+                "countries": "10+ countries",
+                "partners": "300+ partners"
+            },
             "network_desc": "Affiliate · KOL · Agency · Local Hubs",
             "kpi_title": "Recent Quarter KPI",
             "kpi_mrr": "Partner MRR",
@@ -171,7 +174,10 @@ CONTENT = {
             "cta_secondary": "Xem dịch vụ",
             "disclaimer": "*ProPartners hoạt động độc lập, không đại diện độc quyền cho bất kỳ thương hiệu cụ thể nào.",
             "network_title": "Network Overview",
-            "network_stats": "10+ quốc gia · 300+ đối tác",
+            "network_stats": {
+                "countries": "10+ quốc gia",
+                "partners": "300+ đối tác"
+            },
             "network_desc": "Affiliate · KOL · Agency · Local Hubs",
             "kpi_title": "KPI quý gần nhất",
             "kpi_mrr": "Partner MRR",
