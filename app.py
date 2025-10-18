@@ -729,6 +729,11 @@ def render_hero():
         """, unsafe_allow_html=True)
     
     with col2:
+        # Get network stats safely
+        network_stats = hero.get("network_stats", {})
+        countries_text = network_stats.get("countries", "10+ countries")
+        partners_text = network_stats.get("partners", "300+ partners")
+        
         st.markdown(f"""
         <div class="network-section" style="position: relative;">
             <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 1.5rem; padding: 3rem 2rem; text-align: center; position: relative; overflow: hidden; min-height: 320px; display: flex; flex-direction: column; justify-content: center; border: 1px solid #e2e8f0;">
@@ -743,11 +748,11 @@ def render_hero():
                     
                     <div style="margin-bottom: 1rem;">
                         <div style="font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.1;">
-                            <span style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block;">{hero["network_stats"]["countries"]}</span>
+                            <span style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block;">{countries_text}</span>
                         </div>
                         <div style="font-size: clamp(1.5rem, 3vw, 2rem); color: #475569; margin: 0.5rem 0;">•</div>
                         <div style="font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.1;">
-                            <span style="background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block;">{hero["network_stats"]["partners"]}</span>
+                            <span style="background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block;">{partners_text}</span>
                         </div>
                     </div>
                     
