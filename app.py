@@ -729,62 +729,27 @@ def render_hero():
         """, unsafe_allow_html=True)
     
     with col2:
-        # Get network stats safely
-        network_stats = hero.get("network_stats", {})
-        countries_text = network_stats.get("countries", "10+ countries")
-        partners_text = network_stats.get("partners", "300+ partners")
+        # Network Overview Card
+        st.markdown("### 🌍 Network Overview")
         
-        st.markdown(f"""
-        <div class="network-section" style="position: relative;">
-            <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 1.5rem; padding: 3rem 2rem; text-align: center; position: relative; overflow: hidden; min-height: 320px; display: flex; flex-direction: column; justify-content: center; border: 1px solid #e2e8f0;">
-                
-                <div style="position: absolute; top: 20px; left: 20px; width: 8px; height: 8px; border-radius: 50%; background: rgba(99, 102, 241, 0.2);"></div>
-                <div style="position: absolute; top: 60px; right: 30px; width: 6px; height: 6px; border-radius: 50%; background: rgba(139, 92, 246, 0.3);"></div>
-                <div style="position: absolute; bottom: 80px; left: 40px; width: 4px; height: 4px; border-radius: 50%; background: rgba(217, 70, 239, 0.2);"></div>
-                <div style="position: absolute; bottom: 40px; right: 20px; width: 10px; height: 10px; border-radius: 50%; background: rgba(99, 102, 241, 0.15);"></div>
-                
-                <div style="position: relative; z-index: 2;">
-                    <div style="font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; color: #475569; margin-bottom: 1.5rem; font-weight: 600;">{hero["network_title"]}</div>
-                    
-                    <div style="margin-bottom: 1rem;">
-                        <div style="font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.1;">
-                            <span style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block;">{countries_text}</span>
-                        </div>
-                        <div style="font-size: clamp(1.5rem, 3vw, 2rem); color: #475569; margin: 0.5rem 0;">•</div>
-                        <div style="font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.1;">
-                            <span style="background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block;">{partners_text}</span>
-                        </div>
-                    </div>
-                    
-                    <div style="color: #475569; font-weight: 500; font-size: clamp(1rem, 2vw, 1.125rem);">{hero["network_desc"]}</div>
-                </div>
-            </div>
-            
-            <div class="kpi-card" style="position: absolute; bottom: -30px; right: -30px; background: rgba(255, 255, 255, 0.95); border-radius: 1.5rem; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15); border: 1px solid #e2e8f0; padding: 1.25rem 1.75rem; width: 340px; backdrop-filter: blur(20px); transition: all 0.3s ease;">
-                
-                <div style="text-align: left; margin-bottom: 1.25rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.75rem;">
-                    <div style="font-size: 0.7rem; color: #475569; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;">{hero["kpi_title"]}</div>
-                    <div style="font-size: 0.8rem; color: #64748b; font-weight: 500; line-height: 1.2;">{hero["network_desc"]}</div>
-                </div>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start;">
-                    
-                    <div style="display: flex; align-items: flex-start; gap: 0.625rem;">
-                        <div style="width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg, #10b981 0%, #059669 100%); margin-top: 0.5rem; box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2); flex-shrink: 0;"></div>
-                        <div style="min-width: 0;">
-                            <div class="metric-value" style="font-size: 1.75rem; font-weight: 800; line-height: 1; margin-bottom: 0.375rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block;">+142%</div>
-                            <div class="metric-label" style="font-size: 0.7rem; color: #475569; font-weight: 500; line-height: 1.2; display: block;">{hero["kpi_mrr"]}</div>
-                        </div>
-                    </div>
-                    
-                    <div style="text-align: right;">
-                        <div class="metric-value" style="font-size: 1.75rem; font-weight: 800; line-height: 1; margin-bottom: 0.375rem; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block;">28 days</div>
-                        <div class="metric-label" style="font-size: 0.7rem; color: #475569; font-weight: 500; line-height: 1.2; display: block;">{hero["kpi_launch"]}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+        # Display metrics using Streamlit metrics
+        metric_col1, metric_col2 = st.columns(2)
+        with metric_col1:
+            st.metric(label="Countries", value="10+", delta="Growing")
+        with metric_col2:
+            st.metric(label="Partners", value="300+", delta="Active")
+        
+        st.markdown("**Network Types:** Affiliate · KOL · Agency · Local Hubs")
+        
+        # KPI Card
+        st.markdown("---")
+        st.markdown("### 📊 Recent Quarter KPI")
+        
+        kpi_col1, kpi_col2 = st.columns(2)
+        with kpi_col1:
+            st.metric(label="Partner MRR", value="+142%", delta="Growth")
+        with kpi_col2:
+            st.metric(label="Time-to-Launch", value="28 days", delta="Average")
     
     st.markdown('</div>', unsafe_allow_html=True)
 
